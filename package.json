@@ -1,0 +1,15 @@
+{
+  "name": "cypress-demoblaze",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "cypress run",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "postinstall": "cypress install"
+  },
+  "devDependencies": {
+    "cypress": "^13.6.0",
+    "cypress-image-snapshot": "^4.1.1"
+  }
+}
