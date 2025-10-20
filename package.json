@@ -10,6 +10,23 @@
   },
   "devDependencies": {
     "cypress": "^13.6.0",
-    "cypress-image-snapshot": "^4.1.1"
-  }
+    "mocha-junit-reporter": "^2.2.1"
+  },
+  "description": "This repo runs Cypress tests on **GitHub Actions** with:\r - **PR smoke** job (fast subset),\r - **Full** job on `main` push, scheduled nightly, or manual runs,\r - **Artifacts** (videos, screenshots, JUnit XML).",
+  "main": "cypress.config.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghir007/cypress-demoblaze.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ghir007/cypress-demoblaze/issues"
+  },
+  "homepage": "https://github.com/ghir007/cypress-demoblaze#readme"
 }
