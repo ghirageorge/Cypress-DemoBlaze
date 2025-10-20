@@ -30,7 +30,7 @@ describe('DemoBlaze: add to cart and purchase', () => {
     cy.contains('button', /place order/i).click();
     cy.get('#orderModal').should('be.visible');
 
-    const s = { name:'Jane Demo', country:'Romania', city:'Brasov', card:'4242424242424242', month:'10', year:'2028' };
+    const s = { name:'George G', country:'Romania', city:'Brasov', card:'4242424242424242', month:'10', year:'2028' };
     cy.get('#name').clear().type(s.name);
     cy.get('#country').clear().type(s.country);
     cy.get('#city').clear().type(s.city);
