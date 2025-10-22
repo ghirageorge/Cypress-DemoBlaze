@@ -1,0 +1,57 @@
+name: cypress-e2e
+
+on:
+  push:
+    branches: [ main ]   # change to your default branch if it's not 'main'
+  pull_request:
+  workflow_dispatch:      # allows manual runs from the Actions tab
+  # optional: nightly at 01:00 EET (~23:00 UTC)
+  schedule:
+    - cron: "0 23 * * *"
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run Cypress (Chrome, single spec first)
+        uses: cypress-io/github-action@v6
+        with:
+          install: false                  # we already ran 'npm ci'
+          browser: chrome
+           # if your cypress.config.js already sets baseUrl, you can remove 'config' below.
+          config: baseUrl=https://www.demoblaze.com,video=true,videoUploadOnPasses=false
+
+      # Always collect artifacts (even on fail)
+      - name: Upload videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          if-no-files-found: ignore
+          retention-days: 7
